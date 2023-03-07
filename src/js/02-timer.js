@@ -1,6 +1,5 @@
-// Описаний в документації
 import flatpickr from "flatpickr";
-// Додатковий імпорт стилів
+
 import "flatpickr/dist/flatpickr.min.css";
 
 const refs = {
@@ -57,34 +56,20 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-const now = Date.now();  
-
 function startTimer() {
-  const selectedDate = Date.now(refs.datetimePicker.value);
+  const now = Date.now();  
+  const selectedDate = Date.parse(refs.datetimePicker.value)
   let ms = selectedDate - now;
-
-  console.log(Date.now(refs.datetimePicker.value));
-  console.log(now);
-  console.log(ms);
 
   convertMs(ms);
 
   const timerId = setInterval(() => {
-    ms -= Date.now();
+    ms -= 1000;
     convertMs(ms);
-    console.log(ms);
-    if(ms <= 0) {
+    if(ms <= 1500) {
       clearInterval(timerId);
+      refs.secondsEl.textContent = addLeadingZero('0');
     }
   }, 1000);
 }
 refs.startEl.addEventListener('click', startTimer);
-
-
-
-
-
-
-
-
-
