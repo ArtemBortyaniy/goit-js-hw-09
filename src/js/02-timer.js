@@ -1,6 +1,6 @@
 import flatpickr from "flatpickr";
-
 import "flatpickr/dist/flatpickr.min.css";
+import Notiflix from 'notiflix';
 
 const refs = {
     datetimePicker : document.querySelector('#datetime-picker'),
@@ -10,6 +10,8 @@ const refs = {
     minutesEl : document.querySelector('[data-minutes]'),
     secondsEl : document.querySelector('[data-seconds]'),
 }
+
+refs.startEl.addEventListener('click', startTimer);
 
 flatpickr(refs.datetimePicker, { 
   enableTime: true, 
@@ -21,7 +23,7 @@ flatpickr(refs.datetimePicker, {
     const now = new Date();
     
     if(selectedDate < now) {
-      alert("Please choose a date in the future");
+      Notiflix.Notify.failure("Please choose a date in the future");
       refs.startEl.disabled = 'true';
     } else {
       refs.startEl.removeAttribute('disabled');
@@ -72,4 +74,13 @@ function startTimer() {
     }
   }, 1000);
 }
-refs.startEl.addEventListener('click', startTimer);
+
+Notiflix.Notify.success('Sol lucet omnibus');
+
+Notiflix.Notify.failure('Qui timide rogat docet negare');
+
+Notiflix.Notify.warning('Memento te hominem esse');
+
+Notiflix.Notify.info('Cogito ergo sum');
+
+
