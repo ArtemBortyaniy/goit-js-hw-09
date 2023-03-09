@@ -23,6 +23,7 @@ function submitForm (event) {
   let delay = +event.target.delay.value;
   const step = +event.target.step.value;
   const amount = +event.target.amount.value;
+  event.target.reset();
 
   for(let index = 0; index < amount; index +=1) {
     createPromise(index, delay)
